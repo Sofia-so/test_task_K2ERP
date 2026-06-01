@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Замовлення</title>
+</head>
+<body>
+    <h1>Замовлення</h1>
+    <form action="/orders" method="post">
+        <div>
+            <label for="todo_input"></label>
+            <input
+                id="todo_input"
+                type="text"
+                name="list_goods"
+                placeholder="Введіть назву товару"
+                required
+                />
+            <input
+                 type="number"
+                 name="quantity"
+                 placeholder="Введіть кількість товару"
+                 required
+            />
+            <br />
+            <button type="submit">Додати</button>
+        </div>
+    </form>
+
+</body>
+</html>

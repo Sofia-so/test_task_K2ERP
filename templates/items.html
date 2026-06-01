@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Goods</title>
+</head>
+<body>
+    <h1>Список товарів</h1>
+    {% for goods in goods_list %}
+    <p>{{goods.id}} - {{goods.name}}
+        <br> />
+        {{goods.status}}
+    </p>
+    <form action="/goods" method="post">
+        <div>
+            <label for="goods_input"></label>
+            <input
+                id="goods_input"
+                type="text"
+                name="goods.name"
+                placeholder="Введіть назву товару"
+                />
+            <input
+                 status="goods.status"
+                 type="text"
+                 placeholder="Статус товару"
+                />
+            <br />
+            <button type="submit">Додати</button>
+        </div>
+    </form>
+{%endfor%}
+</body>
+</html>
