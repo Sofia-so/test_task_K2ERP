@@ -6,22 +6,23 @@
 </head>
 <body>
     <h1>Список товарів</h1>
-    {% for goods in goods_list %}
-    <p>{{goods.id}} - {{goods.name}}
-        <br> />
-        {{goods.status}}
+    {% for item in goods_list %}
+    <p>{{item.id}} - {{item.name}}
+        <br />
+        {{item.status}}
     </p>
-    <form action="/goods" method="post">
+    {% endfor %}
+    <form action="/goods_add" method="post">
         <div>
             <label for="goods_input"></label>
             <input
                 id="goods_input"
                 type="text"
-                name="goods.name"
+                name="name"
                 placeholder="Введіть назву товару"
                 />
             <input
-                 status="goods.status"
+                 name="status"
                  type="text"
                  placeholder="Статус товару"
                 />
@@ -29,6 +30,5 @@
             <button type="submit">Додати</button>
         </div>
     </form>
-{%endfor%}
 </body>
 </html>

@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Замовлення</h1>
-    <form action="/orders" method="post">
+    <form action="/order" method="post">
         <div>
             <label for="todo_input"></label>
             <input
@@ -15,11 +15,17 @@
                 name="list_goods"
                 placeholder="Введіть назву товару"
                 required
-                />
+            />
             <input
                  type="number"
                  name="quantity"
                  placeholder="Введіть кількість товару"
+                 required
+            />
+            <input
+                 type="number"
+                 name="client_id"
+                 placeholder="Введіть id клієнта"
                  required
             />
             <br />

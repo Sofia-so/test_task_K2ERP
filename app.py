@@ -26,7 +26,7 @@ def client():
     return render_template('client.html')
 
 
-@app.route('/order_client')
+@app.route('/order_client', methods=['GET'])
 def order_client():
     orders = session.scalars(
         select(Order).where(Order.client_id == client.id)
@@ -50,16 +50,16 @@ def add_client():
 ), 201
 
 
-@app.route('/goods')
+@app.route('/goods', methods=['GET'])
 def goods():
-    goods_list = session.query(Goods).all()
+    goods_list = session.scalars(select(Goods)).all()
     return render_template(
         'items.html',
         goods_list=goods_list
     )
 
 
-@app.route('/goods', methods=['POST'])
+@app.route('/goods_add', methods=['POST'])
 def add_goods():
     name = request.form.get('name')
     status = request.form.get('status')
@@ -71,7 +71,7 @@ def add_goods():
     session.add(new_goods)
     session.commit()
 
-    return redirect('/')
+    return redirect('/goods')
 
 
 @app.route("/")
@@ -92,11 +92,13 @@ def order():
 def create_order():
     list_goods = request.form.get('list_goods')
     quantity = int(request.form["quantity"])
+    client_id = request.form.get('client_id')
     price = float(request.form["price"])
     sum_order = quantity * price
     order = Order(
         list_goods=list_goods,
         quantity=quantity,
+        client_id=client_id,
         price=price,
         sum_order=sum_order
     )

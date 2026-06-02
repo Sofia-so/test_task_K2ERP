@@ -1,6 +1,5 @@
 from app import session
-from db import Goods
-from engine import engine_postgresql
+from db import Goods, Client
 
 
 def filling_goods():
@@ -14,3 +13,15 @@ def filling_goods():
     session.add_all(goods_list)
     session.commit()
 
+
+def create_client():
+    clients = [
+    Client(full_name="Firstnam Las"),
+    Client(full_name="Firstn Las")
+    ]
+    session.add_all(clients)
+    session.commit()
+
+
+if __name__ == "__main__":
+    create_client()
