@@ -5,6 +5,7 @@
     <title>Goods</title>
 </head>
 <body>
+    <a href="{{ url_for('index') }}">Головна сторінка</a>
     <h1>Список товарів</h1>
     {% for item in goods_list %}
     <p>{{item.id}} - {{item.name}}
@@ -20,11 +21,20 @@
                 type="text"
                 name="name"
                 placeholder="Введіть назву товару"
+                required
                 />
             <input
                  name="status"
                  type="text"
                  placeholder="Статус товару"
+                 required
+                />
+            <input
+                 name="price"
+                 type="number"
+                 placeholder="Ціна товару"
+                 step="0.01"
+                 required
                 />
             <br />
             <button type="submit">Додати</button>

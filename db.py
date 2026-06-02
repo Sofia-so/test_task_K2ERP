@@ -28,6 +28,7 @@ class Goods(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column()
+    price: Mapped[float] = mapped_column()
     status: Mapped[str] = mapped_column()
     rels_goods = relationship('Order', back_populates='rels_order2')
 
@@ -42,7 +43,6 @@ class Order(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     list_goods: Mapped[str] = mapped_column()
     quantity: Mapped[int] = mapped_column()
-    price: Mapped[float] = mapped_column()
     sum_order: Mapped[float] = mapped_column()
     client_id: Mapped[int] = mapped_column(ForeignKey('clients.id'))
     goods_id: Mapped[int] = mapped_column(ForeignKey('goods.id'))

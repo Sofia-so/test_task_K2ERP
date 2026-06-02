@@ -63,8 +63,10 @@ def goods():
 def add_goods():
     name = request.form.get('name')
     status = request.form.get('status')
+    price = request.form.get('price')
     new_goods = Goods(
         name=name,
+        price=price,
         status=status
     )
 
@@ -93,24 +95,31 @@ def create_order():
     list_goods = request.form.get('list_goods')
     quantity = int(request.form["quantity"])
     client_id = request.form.get('client_id')
-    price = float(request.form["price"])
-    sum_order = quantity * price
+    goods_id = session.scalar(
+        select(Goods.id).where(Goods.name == list_goods)
+    )
+    product_price = session.scalar(
+        select(Goods.price).where(Goods.name == list_goods)
+    )
+    sum_order = quantity * product_price
     order = Order(
         list_goods=list_goods,
         quantity=quantity,
         client_id=client_id,
-        price=price,
+        goods_id=goods_id,
         sum_order=sum_order
     )
 
-    session.add(order)
-    session.commit()
+    try:
+        session.add(order)
+        session.commit()
+
+    except Exception as e:
+        session.rollback()
+        print(e)
 
     return redirect('/')
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-

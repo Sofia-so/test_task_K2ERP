@@ -12,14 +12,14 @@ class ClientSchema(Schema):
 class GoodsSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
+    price = fields.Float(required=True)
     status = fields.Str(required=True)
 
 
 class OrderSchema(Schema):
     id = fields.Int(dump_only=True)
     list_goods = fields.Str(required=True)
-    quantity = fields.Int(required=True, validate=validate.Length(min=1))
-    price = fields.Float()
+    quantity = fields.Int(required=True, validate=validate.Range(min=1))
     sum_order = fields.Float()
     client_id =  fields.Int()
     goods_id =  fields.Int()
